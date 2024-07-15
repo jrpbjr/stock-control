@@ -25,3 +25,35 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+# Contruinto projeto e instalando dependencias
+
+ng new stock-control
+
+
+PS C:\Users\jrpbj\Documentos\projetosAngular> ng new stock-control
+? Would you like to add Angular routing? Yes
+? Which stylesheet format would you like to use?
+  CSS
+> SCSS   [ https://sass-lang.com/documentation/syntax#scss                ]
+  Sass   [ https://sass-lang.com/documentation/syntax#the-indented-syntax ]
+  Less   [ http://lesscss.org     
+
+ng s --o
+? Would you like to share pseudonymous usage data about this project with the Angular Team
+at Google under Google's Privacy Policy at https://policies.google.com/privacy. For more
+details and how to change this setting, see https://angular.io/analytics. Yes
+
+Thank you for sharing pseudonymous usage data. Should you change your mind, the following
+command will disable this feature entirely:
+
+    ng analytics disable
+
+Global setting: enabled
+Local setting: enabled
+Effective status: enabled
+
+# Aviso IMportante
+
+Instalar o PrimeNg e o PrimeIcons, peço por gentileza que utilize os seguintes comandos: npm install primeng@15 e npm install primeicons@5 e npm install primeflex@3.
