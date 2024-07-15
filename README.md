@@ -54,6 +54,6 @@ Global setting: enabled
 Local setting: enabled
 Effective status: enabled
 
-# Aviso IMportante
+# Aviso Importante
 
 Instalar o PrimeNg e o PrimeIcons, peço por gentileza que utilize os seguintes comandos: npm install primeng@15 e npm install primeicons@5 e npm install primeflex@3.
