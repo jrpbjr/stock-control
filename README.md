@@ -57,3 +57,11 @@ Effective status: enabled
 # Aviso Importante
 
 Instalar o PrimeNg e o PrimeIcons, peço por gentileza que utilize os seguintes comandos: npm install primeng@15 e npm install primeicons@5 e npm install primeflex@3.
+
+Instalar ngx-cookie-service
+
+npm install ngx-cookie-service@15.0.0 --save 
+
+#or
+
+yarn add ngx-cookie-service@15.0.0
