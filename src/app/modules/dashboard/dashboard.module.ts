@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DashboardHomeComponent } from './page/dashboard-home/dashboard-home.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DashboardHomeComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
