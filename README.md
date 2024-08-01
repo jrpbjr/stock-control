@@ -67,3 +67,6 @@ npm install ngx-cookie-service@15.0.0 --save
 yarn add ngx-cookie-service@15.0.0
 
 
+# Instalando biblioteca ChartJs
+
+> npm install chart.js@4.3.0 --save  

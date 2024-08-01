@@ -4,7 +4,7 @@ import { PrimeNGConfig } from 'primeng/api';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'stock-control';
@@ -12,7 +12,6 @@ export class AppComponent implements OnInit {
   constructor(private primeNgConfig: PrimeNGConfig) {}
 
   ngOnInit(): void {
-    //animacao botao
     this.primeNgConfig.ripple = true;
   }
 }
