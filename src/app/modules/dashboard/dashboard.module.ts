@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/api';
 
 import { DashboardHomeComponent } from './page/dashboard-home/dashboard-home.component';
 import { DASHBOARD_ROUTES } from './dashboard.routing';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [DashboardHomeComponent],
@@ -29,6 +30,8 @@ import { DASHBOARD_ROUTES } from './dashboard.routing';
     CardModule,
     ToastModule,
     ChartModule,
+    // Shared
+    SharedModule,
   ],
   providers: [MessageService, CookieService],
 })

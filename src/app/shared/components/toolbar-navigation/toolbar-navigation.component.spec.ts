@@ -8,9 +8,8 @@ describe('ToolbarNavigationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToolbarNavigationComponent ]
-    })
-    .compileComponents();
+      declarations: [ToolbarNavigationComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarNavigationComponent);
     component = fixture.componentInstance;
