@@ -16,13 +16,19 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialogModule } from 'primeng/confirmdialog'
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmationService } from 'primeng/api';
+import { ProductsHomeComponent } from './page/products-home/products-home.component';
+import { RouterModule } from '@angular/router';
+import { PRODUCTS_ROUTES } from './products.routing';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ProductsHomeComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forChild(PRODUCTS_ROUTES),
     SharedModule,
     HttpClientModule,
     // PrimeNg
