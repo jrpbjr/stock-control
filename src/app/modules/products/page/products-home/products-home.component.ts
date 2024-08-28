@@ -6,6 +6,8 @@ import { ProductsService } from '../../../../services/products/products.service'
 import { ProductsDataTransferService } from 'src/app/shared/services/products/products-data-transfer.service';
 import { GetAllProductsResponse } from 'src/app/models/interfaces/products/response/GetAllProductsResponse';
 import { EventAction } from 'src/app/models/interfaces/products/event/EventAction';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ProductFormComponent } from '../../components/product-form/product-form.component';
 
 @Component({
   selector: 'app-products-home',
@@ -14,6 +16,7 @@ import { EventAction } from 'src/app/models/interfaces/products/event/EventActio
 })
 export class ProductsHomeComponent implements OnInit, OnDestroy {
   private readonly destroy$: Subject<void> = new Subject();
+  private ref!: DynamicDialogRef;
   public productsDatas: Array<GetAllProductsResponse> = [];
 
   constructor(
@@ -21,7 +24,8 @@ export class ProductsHomeComponent implements OnInit, OnDestroy {
     private productsDtService: ProductsDataTransferService,
     private router: Router,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -61,7 +65,20 @@ export class ProductsHomeComponent implements OnInit, OnDestroy {
 
   handleProductAction(event: EventAction): void {
     if (event) {
-      console.log('DADOS DO EVENTO RECEBIDO', event);
+      this.ref = this.dialogService.open(ProductFormComponent, {
+        header: event?.action,
+        width: '70%',
+        contentStyle: { overflow: 'auto' },
+        baseZIndex: 10000,
+        maximizable: true,
+        data: {
+          event: event,
+          productDatas: this.productsDatas,
+        },
+      });
+      this.ref.onClose.pipe(takeUntil(this.destroy$)).subscribe({
+        next: () => this.getAPIProductsDatas(),
+      });
     }
   }
 
@@ -69,47 +86,46 @@ export class ProductsHomeComponent implements OnInit, OnDestroy {
     product_id: string;
     productName: string;
   }): void {
-    if (event){
-      //console.log('DADOS RECEBIDOS DO EVENTO DE DELETAR PRODUTOS', event);
+    if (event) {
       this.confirmationService.confirm({
         message: `Confirma a exclusão do produto: ${event?.productName}?`,
-        header: 'Confirmação de exlusão',
+        header: 'Confirmação de exclusão',
         icon: 'pi pi-exclamation-triangle',
         acceptLabel: 'Sim',
         rejectLabel: 'Não',
         accept: () => this.deleteProduct(event?.product_id),
-      })
+      });
     }
   }
 
   deleteProduct(product_id: string) {
-    if(product_id){
-      //alert(product_id)
-      this.productsService.deleteProduct(product_id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (response) => {
-          if (response){
+    if (product_id) {
+      this.productsService
+        .deleteProduct(product_id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (response) => {
+            if (response) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Sucesso',
+                detail: 'Produto removido com sucesso!',
+                life: 2500,
+              });
+
+              this.getAPIProductsDatas();
+            }
+          },
+          error: (err) => {
+            console.log(err);
             this.messageService.add({
-              severity: 'success',
-              summary: 'Sucesso',
-              detail: 'Produto removido com sucesso!',
+              severity: 'error',
+              summary: 'Erro',
+              detail: 'Erro ao remover produto!',
               life: 2500,
             });
-
-            this.getAPIProductsDatas();
-
-          }
-        }, error: (err) => {
-          console.log(err);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Erro ao remover produto!',
-            life: 2500
-          })
-        }
-      });
+          },
+        });
     }
   }
 
