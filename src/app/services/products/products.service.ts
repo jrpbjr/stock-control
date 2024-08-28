@@ -54,6 +54,7 @@ export class ProductsService {
       this.httpOptions
     );
   }
+
   editProduct(requestDatas: EditProductRequest): Observable<void> {
     return this.http.put<void>(
       `${this.API_URL}/product/edit`,
