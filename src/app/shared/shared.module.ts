@@ -21,7 +21,7 @@ import { ShortenPipe } from './pipes/shorten/shorten.pipe';
     CardModule,
     ButtonModule,
   ],
-  exports: [ToolbarNavigationComponent],
+  exports: [ToolbarNavigationComponent, ShortenPipe],
   providers: [DialogService, CurrencyPipe],
 })
 export class SharedModule {}
